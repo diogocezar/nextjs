@@ -1,7 +1,25 @@
 import Cors from "cors";
 
+const init = (middleware) => {
+  return (req, res) =>
+    new Promise((resolve, reject) => {
+      middleware(req, res, (result) => {
+        if (result instanceof Error) {
+          return reject(result);
+        }
+        return resolve(result);
+      });
+    });
+};
+
+const cors = init(
+  Cors({
+    methods: ["GET", "POST", "OPTIONS"],
+  })
+);
+
 async function posts(req, res) {
-  await Cors(req, res);
+  await cors(req, res);
   const { page = 1 } = req.query;
   const posts = await fetch(
     `https://www.diogocezar.com/wp-json/wp/v2/posts?page=${page}`
