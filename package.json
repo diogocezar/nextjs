@@ -9,6 +9,7 @@
   "author": "Diogo Cezar Teixeira Batista <diogo@diogocezar.com>",
   "license": "MIT",
   "dependencies": {
+    "cors": "^2.8.5",
     "next": "^10.0.5",
     "react": "^17.0.1",
     "react-dom": "^17.0.1"
